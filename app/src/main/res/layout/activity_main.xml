@@ -37,6 +37,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
     <Button
+        android:visibility="gone"
         android:id="@+id/btnShow"
         android:layout_below="@+id/btnTest"
         android:text="Press Here Restore to Show"
