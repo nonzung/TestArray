@@ -92,6 +92,7 @@ public class MainActivity extends ActionBarActivity {
                 map.put("Sex",tv4.getText().toString());
 
                 collection.add(map);
+                collections.clear();
                 collections.addAll(collection);
                 JSONArray result= new JSONArray(collection);
                 prefEditor.putString("Secret", result.toString());
