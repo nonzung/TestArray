@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -57,7 +56,35 @@ public class MainActivity extends ActionBarActivity {
                 startActivityForResult(in,202);
             }
         });
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("TestHashMap", 0);
+        String storedCollection = pref.getString("Secret", null);
+        collections = new ArrayList<HashMap<String, String>>();
+        try {
+            JSONArray array = new JSONArray(storedCollection);
+            HashMap<String, String> item = null;
+            for(int i =0; i<array.length(); i++){
+                String obj = array.get(i).toString();
+                JSONObject ary = new JSONObject(obj);
+                Iterator<String> it = ary.keys();
+                item = new HashMap<String, String>();
+                while(it.hasNext()){
+                    String key = it.next();
+                    item.put(key, (String)ary.get(key));
+                }
+                collections.add(item);
+            }
 
+            //tv1.setText(collections.get(0).get("Name"));
+            //tv2.setText(collections.get(0).get("Id"));
+            // tv3.setText(collections.get(0).get("Phone"));
+            //tv4.setText(collections.get(0).get("Sex"));
+
+
+            adapter = new ListViewAdapter(MainActivity.this,collections);
+            listview.setAdapter(adapter);
+        } catch (JSONException e) {
+            Log.e("Restore", "while parsing", e);
+        }
         btnSt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
