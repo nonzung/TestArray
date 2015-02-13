@@ -108,10 +108,6 @@ public class MainActivity extends ActionBarActivity {
                         collection.add(item);
                     }
 
-                    //tv1.setText(collections.get(0).get("Name"));
-                    //tv2.setText(collections.get(0).get("Id"));
-                    // tv3.setText(collections.get(0).get("Phone"));
-                    //tv4.setText(collections.get(0).get("Sex"));
 
                 } catch (JSONException e) {
                     Log.e("Restore", "while parsing", e);
